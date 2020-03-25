@@ -23,9 +23,12 @@ services:
             dockerfile: Dockerfile
         container_name: forumodua-parser-php
         env_file: .env
-        command: php bin/console # todo run consumer
+        command: php bin/consumer
+#        command: php bin/console # todo run consumer
         networks:
             - forumodua-network
+        volumes:
+            - .:/usr/src/app
 
 networks:
     forumodua-network: {}

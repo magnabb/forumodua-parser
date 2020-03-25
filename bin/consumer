@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+use App\Consumer;
+
+require 'bootstrap.php';
+
+$app = new Consumer();
+$app->run();

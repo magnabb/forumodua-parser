@@ -1,4 +1,3 @@
-FROM composer:latest AS composer
 FROM php:7.4-cli-alpine
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -15,9 +14,6 @@ RUN apk add --no-cache rabbitmq-c rabbitmq-c-dev $PHPIZE_DEPS \
     && docker-php-ext-enable amqp \
     && apk del $PHPIZE_DEPS
 
-ADD . /usr/src/app
 WORKDIR /usr/src/app
-
-RUN composer install -a --no-dev --ignore-platform-reqs --no-scripts
 
 CMD ["php", "-a"]
