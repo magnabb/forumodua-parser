@@ -1,0 +1,6 @@
+.idea
+vendor
+~*
+*~
+
+# .env shoul be ignored. But in this case, I left it in git for not complicating.
