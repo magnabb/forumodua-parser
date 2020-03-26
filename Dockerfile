@@ -5,7 +5,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 # Install Postgresql extension
 RUN set -ex \
 	&& apk --no-cache add postgresql-libs postgresql-dev \
-	&& docker-php-ext-install pgsql pdo_pgsql \
+	&& docker-php-ext-install pgsql pdo_pgsql sockets \
 	&& apk del postgresql-dev
 
 # Install AMQP extension.

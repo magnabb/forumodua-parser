@@ -1,14 +1,15 @@
 version: "3"
 
 services:
-# https://hub.docker.com/_/rabbitmq
+    # https://hub.docker.com/_/rabbitmq
     rabbit:
         image: rabbitmq:3.8-alpine
         container_name: forumodua-parser-rebbit
+        env_file: .env
         networks:
             - forumodua-network
 
-# https://hub.docker.com/_/postgres
+    # https://hub.docker.com/_/postgres
     postgres:
         image: postgres:12.2-alpine
         container_name: forumodua-parser-postgresql
@@ -16,15 +17,17 @@ services:
         networks:
             - forumodua-network
 
-# https://hub.docker.com/_/php
+    # https://hub.docker.com/_/php
     php:
         build:
             context: ./
             dockerfile: Dockerfile
         container_name: forumodua-parser-php
         env_file: .env
+        depends_on:
+            - postgres
+            - rabbit
         command: php bin/consumer
-#        command: php bin/console # todo run consumer
         networks:
             - forumodua-network
         volumes:

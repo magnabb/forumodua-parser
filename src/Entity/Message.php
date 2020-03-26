@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Message;
+namespace App\Entity;
 
 use App\Contracts\EntityInterface;
 
-class Message implements EntityInterface
+class Message implements EntityInterface, \JsonSerializable
 {
     private string $subject;
-
     private string $author;
-
     private \DateTimeImmutable $date;
-
     private string $text;
 
     public function __construct(string $subject, string $author, \DateTimeImmutable $date, string $text)
@@ -22,6 +19,19 @@ class Message implements EntityInterface
         $this->author = $author;
         $this->date = $date;
         $this->text = $text;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return [
+            $this->subject,
+            $this->author,
+            $this->date->format('U'),
+            $this->text
+        ];
     }
 
     public function getSubject(): string

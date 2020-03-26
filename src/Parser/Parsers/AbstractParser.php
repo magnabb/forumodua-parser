@@ -27,5 +27,5 @@ abstract class AbstractParser
 
     abstract protected function checkAuth(Crawler $crawler): bool;
 
-    abstract protected function parseContent(string $parseUrl);
+    abstract protected function parseContent(string $parseUrl): void;
 }

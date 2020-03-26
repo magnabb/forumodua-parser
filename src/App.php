@@ -11,7 +11,7 @@ class App
 {
     public function run()
     {
-        $parser = (new ParsersStrategy())->get(ForumoduaParser::FORUMODUA);
+        $parser = (new ParsersStrategy())->get(ForumoduaParser::TYPE_NAME);
 
         $parser->parse('https://forumodua.com/showthread.php?t=252286');// todo: get from argument
     }
