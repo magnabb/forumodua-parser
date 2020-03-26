@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+use App\App;
+
+require 'bootstrap.php';
+
+$app = new App();
+$app->run();

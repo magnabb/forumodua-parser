@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Parser;
 
 use App\Contracts\ParserInterface;
+use App\Parser\Parsers\ForumoduaParser;
 
 class ParsersStrategy
 {
@@ -12,8 +13,7 @@ class ParsersStrategy
 
     public function __construct()
     {
-        // todo: register strategies
-//        $this->strategies[ConcreteParser::getType()] = new ConcreteParser();
+        $this->strategies[ForumoduaParser::getType()] = new ForumoduaParser();
     }
 
     public function get(string $type): ParserInterface

@@ -7,5 +7,5 @@ namespace App\Contracts;
 interface ParserInterface
 {
     public static function getType(): string;
-    public function parse(/*todo: declare type*/$resource): void;
+    public function parse(string $parseUrl): void;
 }

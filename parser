@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker run --rm --interactive --tty --env-file $PWD/.env --volume $PWD:/usr/src/app forumodua-parser_php bin/parser "$@"

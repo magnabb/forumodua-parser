@@ -7,4 +7,4 @@ require __DIR__.'/../vendor/autoload.php';
 // console applications can work long term
 set_time_limit(0);
 
-(new Dotenv())->loadEnv(dirname(__DIR__).'/.env');
+(new Dotenv())->overload(dirname(__DIR__) . '/.env');
