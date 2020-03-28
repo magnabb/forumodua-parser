@@ -2,7 +2,7 @@
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    create table if not exists topic
+create table if not exists topic
 (
     id serial not null
         constraint topic_pk

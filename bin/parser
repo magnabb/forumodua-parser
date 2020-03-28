@@ -11,7 +11,7 @@ $options = getopt('', [
     CLI_ARGUMENT_NAME_MAX . '::'
 ]);
 
-require 'bootstrap.php';
+require dirname(__DIR__) . '/src/bootstrap.php';
 
 $app = new Parser();
 $app->run($options);

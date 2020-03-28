@@ -3,7 +3,7 @@
 
 use App\Consumer;
 
-require 'bootstrap.php';
+require dirname(__DIR__) . '/src/bootstrap.php';
 
 while (true) {
     try {

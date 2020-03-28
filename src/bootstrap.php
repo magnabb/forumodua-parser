@@ -2,7 +2,7 @@
 
 use Symfony\Component\Dotenv\Dotenv;
 
-require __DIR__.'/../vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 // console applications can work long term
 set_time_limit(0);
