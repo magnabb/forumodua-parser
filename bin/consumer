@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+sleep(10); // wait rabbit starting
+
 use App\Consumer;
 
 require dirname(__DIR__) . '/src/bootstrap.php';

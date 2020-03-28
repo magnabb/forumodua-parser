@@ -10,8 +10,10 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 class MessageHandler
 {
-    public function __invoke(AMQPMessage $message): void
+    public function __invoke($message): void
     {
+        var_dump(__FILE__, 'invoked'); // left it for knowing it`s work
+
         (new MessageRepository())->save(Message::fromJson($message->body));
     }
 }
