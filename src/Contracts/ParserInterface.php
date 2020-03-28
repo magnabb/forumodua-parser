@@ -7,5 +7,6 @@ namespace App\Contracts;
 interface ParserInterface
 {
     public static function getType(): string;
-    public function parse(string $parseUrl): void;
+
+    public function parse(string $parseUrl, int $maxPosts): void;
 }

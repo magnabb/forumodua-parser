@@ -51,15 +51,15 @@ class ForumoduaParser extends AbstractParser
         }
     }
 
-    protected function parseContent(string $parseUrl): void
+    protected function parseContent(string $parseUrl, int $maxPosts): void
     {
         $crawler = $this->browser->request('GET', $parseUrl);
 
         $posts = $crawler->filter('.postcontainer');
         $subject = $crawler->filter('span.threadtitle a')->text();
         $posts
-            ->reduce(function (Crawler $post, int $idx) {
-                return $this->isPostCorrect($post, $idx);
+            ->reduce(function (Crawler $post, int $idx) use ($maxPosts) {
+                return $this->isPostCorrect($post, $idx, $maxPosts);
             })
             ->each(function (Crawler $post) use ($subject) {
                 $message = new Message(
@@ -73,14 +73,14 @@ class ForumoduaParser extends AbstractParser
             });
     }
 
-    private function isPostCorrect(Crawler $post, int $idx, int $maxPosts = 1): bool
+    private function isPostCorrect(Crawler $post, int $idx, int $maxPosts): bool
     {
         if ($idx > $maxPosts) {
             return false;
         }
 
         try {
-            $post->filter('.date')->text();// todo
+            $post->filter('.date')->text();// todo: don`t like it
         } catch (\Throwable $e) {
             return false;
         }

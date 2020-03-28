@@ -10,10 +10,24 @@ use App\Parser\ParsersStrategy;
 
 class Parser implements ConsoleApplicationInterface
 {
-    public function run(): void
+    public function run(array $options = []): void
     {
-        $parser = (new ParsersStrategy())->get(ForumoduaParser::TYPE_NAME);
+        $defaultOptions = [
+            'parse' => '',
+            'max' => 10,
+        ];
 
-        $parser->parse('https://forumodua.com/showthread.php?t=252286');// todo: get from argument
+        $options = array_merge($defaultOptions, $options);
+
+        if (!filter_var($options['parse'], FILTER_VALIDATE_URL)) {
+            throw new \RuntimeException('Invalid url');
+        }
+
+        if (!filter_var((int) $options['max'], FILTER_VALIDATE_INT)) {
+            throw new \RuntimeException('Invalid max value');
+        }
+
+        $parser = (new ParsersStrategy())->get(ForumoduaParser::TYPE_NAME);
+        $parser->parse($options['parse'], $options['max']);
     }
 }

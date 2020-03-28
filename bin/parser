@@ -3,7 +3,12 @@
 
 use App\Parser;
 
+$options = getopt('', [
+    'parse:',
+    'max::'
+]);
+
 require 'bootstrap.php';
 
 $app = new Parser();
-$app->run();
+$app->run($options);

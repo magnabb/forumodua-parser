@@ -13,7 +13,7 @@ abstract class AbstractParser implements ParserInterface
     protected string $login;
     protected string $loginPath;
 
-    public function parse(string $parseUrl): void
+    public function parse(string $parseUrl, int $maxPosts): void
     {
         $crawler = $this->auth();
         
@@ -21,12 +21,12 @@ abstract class AbstractParser implements ParserInterface
             trigger_error('auth failed', E_USER_WARNING);
         }
 
-        $this->parseContent($parseUrl);
+        $this->parseContent($parseUrl, $maxPosts);
     }
 
     abstract protected function auth(): Crawler;
 
     abstract protected function checkAuth(Crawler $crawler): bool;
 
-    abstract protected function parseContent(string $parseUrl): void;
+    abstract protected function parseContent(string $parseUrl, int $maxPosts): void;
 }
