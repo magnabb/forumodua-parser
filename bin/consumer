@@ -5,5 +5,12 @@ use App\Consumer;
 
 require 'bootstrap.php';
 
-$app = new Consumer();
-$app->run();
+while (true) {
+    try {
+        $app = new Consumer();
+        $app->run();
+    } catch (\Throwable $e) {
+        var_dump($e->getMessage());
+        sleep(15);
+    }
+}

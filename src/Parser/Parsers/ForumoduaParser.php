@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Parser\Parsers;
 
-use App\Contracts\ParserInterface;
 use App\Contracts\QueueProviderInterface;
 use App\Entity\Message;
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
-class ForumoduaParser extends AbstractParser implements ParserInterface
+class ForumoduaParser extends AbstractParser
 {
     public const TYPE_NAME = 'forumodua';
 
@@ -74,7 +73,7 @@ class ForumoduaParser extends AbstractParser implements ParserInterface
             });
     }
 
-    private function isPostCorrect(Crawler $post, int $idx, int $maxPosts = 10): bool
+    private function isPostCorrect(Crawler $post, int $idx, int $maxPosts = 1): bool
     {
         if ($idx > $maxPosts) {
             return false;

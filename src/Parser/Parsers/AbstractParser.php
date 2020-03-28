@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Parser\Parsers;
 
+use App\Contracts\ParserInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
-abstract class AbstractParser
+abstract class AbstractParser implements ParserInterface
 {
     protected string $password;
     protected string $login;

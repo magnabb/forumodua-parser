@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Contracts\ConsoleApplicationInterface;
 use App\Parser\Parsers\ForumoduaParser;
 use App\Parser\ParsersStrategy;
 
-class App
+class Parser implements ConsoleApplicationInterface
 {
-    public function run()
+    public function run(): void
     {
         $parser = (new ParsersStrategy())->get(ForumoduaParser::TYPE_NAME);
 

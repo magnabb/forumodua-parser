@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App;
 
-class Consumer
+use App\Contracts\ConsoleApplicationInterface;
+use App\Handler\MessageHandler;
+use App\QueueProvider\RabbitProvider;
+
+class Consumer implements ConsoleApplicationInterface
 {
-    public function run(): void
+    public function run(array $options = []): void
     {
-        while (true) {
-            echo 'PHP OK' . PHP_EOL;
-            sleep(30); // todo tmp
-        }
+        $provider = new RabbitProvider();
+        $provider->consume(MessageHandler::class);
     }
 }

@@ -34,6 +34,16 @@ class Message implements EntityInterface, \JsonSerializable
         ];
     }
 
+    public static function fromJson(string $jsonString): self
+    {
+        $data = json_decode($jsonString, true, 512, JSON_THROW_ON_ERROR);
+
+        // denormalize datetime
+        $data[2] = \DateTimeImmutable::createFromFormat('U', $data[2]);
+
+        return new self(...$data);
+    }
+
     public function getSubject(): string
     {
         return $this->subject;

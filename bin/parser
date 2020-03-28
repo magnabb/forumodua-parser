@@ -1,9 +1,9 @@
 #!/usr/bin/env php
 <?php
 
-use App\App;
+use App\Parser;
 
 require 'bootstrap.php';
 
-$app = new App();
+$app = new Parser();
 $app->run();

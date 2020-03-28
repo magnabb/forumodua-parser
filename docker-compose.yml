@@ -7,15 +7,19 @@ services:
         container_name: forumodua-parser-rebbit
         env_file: .env
         networks:
-            - forumodua-network
+        - forumodua-network
 
     # https://hub.docker.com/_/postgres
     postgres:
         image: postgres:12.2-alpine
         container_name: forumodua-parser-postgresql
         env_file: .env
+        ports:
+        - 5432:5432
+        volumes:
+        - ./migrations:/docker-entrypoint-initdb.d
         networks:
-            - forumodua-network
+        - forumodua-network
 
     # https://hub.docker.com/_/php
     php:
@@ -25,13 +29,13 @@ services:
         container_name: forumodua-parser-php
         env_file: .env
         depends_on:
-            - postgres
-            - rabbit
+        - postgres
+        - rabbit
         command: php bin/consumer
         networks:
-            - forumodua-network
+        - forumodua-network
         volumes:
-            - .:/usr/src/app
+        - .:/usr/src/app
 
 networks:
     forumodua-network: {}
