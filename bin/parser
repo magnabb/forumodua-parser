@@ -3,9 +3,12 @@
 
 use App\Parser;
 
+define('CLI_ARGUMENT_NAME_PARSE', 'parse');
+define('CLI_ARGUMENT_NAME_MAX', 'max');
+
 $options = getopt('', [
-    'parse:',
-    'max::'
+    CLI_ARGUMENT_NAME_PARSE . ':',
+    CLI_ARGUMENT_NAME_MAX . '::'
 ]);
 
 require 'bootstrap.php';
